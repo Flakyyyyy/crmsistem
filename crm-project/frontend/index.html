@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>skb. CRM</title>
+  <link rel="stylesheet" href="./css/normolize.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="#" class="header__logo-link">
+      <img src="./img/logo.png" alt="skb логотип" class="header__logo">
+    </a>
+    <input
+      type="text"
+      class="header__search"
+      id="searchInput"
+      placeholder="Введите запрос"
+      autocomplete="off"
+    >
+  </header>
+
+  <main class="main">
+    <h1 class="main__title">Клиенты</h1>
+
+    <div class="table-wrapper">
+      <table class="clients-table" id="clientsTable">
+        <thead>
+          <tr class="clients-table__head-row">
+            <th class="clients-table__th clients-table__th--sortable" data-col="id">
+              ID <span class="sort-icon" data-col="id"></span>
+            </th>
+            <th class="clients-table__th clients-table__th--sortable" data-col="fio">
+              Фамилия Имя Отчество <span class="sort-icon" data-col="fio"></span>
+            </th>
+            <th class="clients-table__th clients-table__th--sortable" data-col="createdAt">
+              Дата и время создания <span class="sort-icon" data-col="createdAt"></span>
+            </th>
+            <th class="clients-table__th clients-table__th--sortable" data-col="updatedAt">
+              Последнее изменение <span class="sort-icon" data-col="updatedAt"></span>
+            </th>
+            <th class="clients-table__th">Контакты</th>
+            <th class="clients-table__th">Действия</th>
+          </tr>
+        </thead>
+        <tbody class="clients-table__body" id="clientsTableBody">
+        </tbody>
+      </table>
+
+      <div class="loader" id="loader">
+        <img src="./img/load.png" alt="Загрузка..." class="loader__img">
+      </div>
+    </div>
+
+    <button class="add-client-btn" id="addClientBtn">
+      <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.5 8C16.71 8 18.5 6.21 18.5 4C18.5 1.79 16.71 0 14.5 0C12.29 0 10.5 1.79 10.5 4C10.5 6.21 12.29 8 14.5 8ZM5.5 6V3H3.5V6H0.5V8H3.5V11H5.5V8H8.5V6H5.5ZM14.5 10C11.83 10 6.5 11.34 6.5 14V16H22.5V14C22.5 11.34 17.17 10 14.5 10Z" fill="#9873FF"/>
+      </svg>
+      <span>Добавить клиента</span>
+    </button>
+  </main>
+
+ 
+  <div class="modal-overlay" id="clientModalOverlay">
+    <div class="modal" id="clientModal">
+      <button class="modal__close" id="clientModalClose" aria-label="Закрыть">&times;</button>
+      <h2 class="modal__title" id="clientModalTitle">Добавить клиента</h2>
+      <p class="modal__subtitle" id="clientModalSubtitle"></p>
+
+      <div class="modal__body">
+        <label class="form-label">
+          <span class="form-label__text">Фамилия<span class="form-label__required">*</span></span>
+          <input type="text" class="form-input" id="fieldSurname" placeholder="Фамилия">
+        </label>
+        <label class="form-label">
+          <span class="form-label__text">Имя<span class="form-label__required">*</span></span>
+          <input type="text" class="form-input" id="fieldName" placeholder="Имя">
+        </label>
+        <label class="form-label">
+          <span class="form-label__text">Отчество</span>
+          <input type="text" class="form-input" id="fieldLastName" placeholder="Отчество">
+        </label>
+
+        <div class="contacts-section" id="contactsSection">
+       
+        </div>
+
+        <button class="add-contact-btn" id="addContactBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="8" cy="8" r="7.5" stroke="#9873FF"/>
+            <path d="M8 4.5V11.5M4.5 8H11.5" stroke="#9873FF" stroke-linecap="round"/>
+          </svg>
+          Добавить контакт
+        </button>
+
+        <div class="form-errors" id="formErrors"></div>
+
+        <button class="btn btn--primary" id="saveClientBtn">Сохранить</button>
+        <button class="btn btn--danger-link" id="deleteClientFromFormBtn" style="display:none;">Удалить клиента</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay" id="deleteModalOverlay">
+    <div class="modal modal--small" id="deleteModal">
+      <button class="modal__close" id="deleteModalClose" aria-label="Закрыть">&times;</button>
+      <h2 class="modal__title">Удалить клиента</h2>
+      <p class="modal__text">Вы действительно хотите удалить данного клиента?</p>
+      <button class="btn btn--primary btn--danger" id="confirmDeleteBtn">Удалить</button>
+      <button class="btn btn--link" id="cancelDeleteBtn">Отмена</button>
+    </div>
+  </div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/table.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
