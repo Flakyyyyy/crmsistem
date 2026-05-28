@@ -26,7 +26,7 @@ async function apiGetClients(search = '') {
  * @returns {Promise<Object>}
  */
 async function apiGetClient(id) {
-  const response = await fetch(`${API_BASE}/client/${id}`);
+  const response = await fetch(`${API_BASE}/clients/${id}`);
 
   if (!response.ok) {
     throw new Error(`Ошибка загрузки клиента: ${response.status}`);
@@ -67,7 +67,7 @@ async function apiCreateClient(clientData) {
  * @returns {Promise<Object>}
  */
 async function apiUpdateClient(id, clientData) {
-  const response = await fetch(`${API_BASE}/client/${id}`, {
+  const response = await fetch(`${API_BASE}/clients/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(clientData),
@@ -91,7 +91,7 @@ async function apiUpdateClient(id, clientData) {
  * @returns {Promise<void>}
  */
 async function apiDeleteClient(id) {
-  const response = await fetch(`${API_BASE}/client/${id}`, {
+  const response = await fetch(`${API_BASE}/clients/${id}`, {
     method: 'DELETE',
   });
 
